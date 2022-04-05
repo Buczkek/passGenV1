@@ -1,8 +1,16 @@
 import random
 import string
 
+vowels = 'AaEeIiOoUu'
 
-def genPassword(length=8, max_rep=2, char_groups=(string.ascii_lowercase, string.ascii_uppercase, '!@#$%^&*')):
+other_chars = list(string.ascii_lowercase + string.ascii_uppercase)
+for x in vowels:
+    other_chars.remove(x)
+
+other_chars = ''.join(other_chars)
+
+
+def genPassword(length=8, max_rep=2, char_groups=(other_chars,  vowels, '!@#$%^&*')):
     password = []
     choices = []
     for x in char_groups:
@@ -17,7 +25,7 @@ def genPassword(length=8, max_rep=2, char_groups=(string.ascii_lowercase, string
             if n != 0:
                 choices += [last] * n
         last = temp
-    return password
+    return ''.join(password)
 
 
 if __name__ == '__main__':
